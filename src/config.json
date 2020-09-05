@@ -1,0 +1,10 @@
+{
+    "cogs": [
+        "cogs.CommandEvents",
+        "cogs.HelpCommands",
+        "cogs.DatabaseCommands",
+        "cogs.ModeratorCommands",
+        "cogs.InfoCommands",
+        "cogs.MusicCommands"
+    ]
+}
