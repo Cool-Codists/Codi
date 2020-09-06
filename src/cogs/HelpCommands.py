@@ -68,7 +68,7 @@ class HelpCommands(commands.Cog):
     @help.command(name='mod')
     async def help_mod(self, ctx):
         helpMod = discord.Embed(
-            title="Music Commands",
+            title="Moderator Commands",
             description="How to use them",
             color=0xf5d1f6
         )
@@ -88,7 +88,7 @@ class HelpCommands(commands.Cog):
     @help.command(name='code')
     async def help_code(self, ctx):
         helpCode = discord.Embed(
-            title="Music Commands",
+            title="Code Snippet Commands",
             description="How to use them",
             color=0xf5d1f6
         )
