@@ -13,8 +13,8 @@ client = commands.Bot(command_prefix = os.getenv("PREFIX"))
 client.remove_command('help')
 
 #get json data
-with open('config.json') as f:
-	data = json.load(f)
+with open('./config.json') as f:
+	configData = json.load(f)
 
 
 @client.event
@@ -25,7 +25,7 @@ async def on_ready():
 async def test(ctx):
     await ctx.send('success!')
 
-for ext in data['cogs']:
+for ext in configData['cogs']:
     client.load_extension(ext)
 
 # client.load_extension('cogs.CommandEvents')

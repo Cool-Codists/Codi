@@ -12,8 +12,8 @@ class InfoCommands(commands.Cog):
     async def serverinfo(self, ctx):
         await ctx.send('serverinfo')
 
-    @commands.command(name='userinfo')
-    async def userinfo(self, ctx):
+    @commands.command(name='whois')
+    async def whois(self, ctx):
         await ctx.send('userinfo')
 
     @commands.command(name='avatar')

@@ -11,10 +11,8 @@ class CommandEvents(commands.Cog):
     '''
     @commands.Cog.listener()
     async def on_command_error(self, ctx, err):
-        try:
-            print(f'{ctx.command.name} was invoked incorrectly')
-        except:
-            print(err)
+        print(f'[ERROR] command {ctx.command.name} was invoked incorrectly due to reasons below')
+        print(err)
 
     @commands.Cog.listener()
     async def on_command(self, ctx):
@@ -23,11 +21,11 @@ class CommandEvents(commands.Cog):
                 commands_tally[ctx.command.name] += 1
             else:
                 commands_tally[ctx.command.name] = 1
-            print(commands_tally)
+            print(f'[INFO] command {commands_tally} is being called')
 
     @commands.Cog.listener()
     async def on_command_completion(self, ctx):
-        print(f'{ctx.command.name} was invoked successfully')
+        print(f'[INFO] command {ctx.command.name} was invoked successfully')
 
 def setup(bot):
     bot.add_cog(CommandEvents(bot))
