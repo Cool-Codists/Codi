@@ -26,17 +26,19 @@ class MusicCommands(commands.Cog):
         await ctx.send('skipped current song')
 
     #volume control
-    @commands.command(name='volume')
-    async def volume(self, ctx, message):
+    @commands.command(name='volume', aliases=['v','vol'])
+    async def volume(self, ctx, volume):
         member = ctx.author
+        print(volume)
 
         try:
-            self.volume = int(message)
-            if(self.volume > 100 or self.volume < 0):
+            self.volume = int(volume)
+            if self.volume > 100 or self.volume < 0:
                 await ctx.send("Please enter a valid number between 1-100")
             else:
-                changeVolumeTo(self.volume)
-                await ctx.send(f'volume changed to {self.volume}%')
+                success = changeVolumeTo(self.volume)
+                if success:
+                    await ctx.send(f'volume changed to {self.volume}%')
 
         except ValueError:
             print("[ERROR] Can't convert string into int")
@@ -52,12 +54,12 @@ class MusicCommands(commands.Cog):
         
     
     #queue
-    @commands.command(name='queue')
+    @commands.command(name='queue', aliases=['q'])
     async def queue(self, ctx):
         await ctx.send('queue displayed')
 
-def changeVolumeTo(volume):
-    return volume
+def changeVolumeTo(volume) -> bool:
+    return True
 
 def setup(bot):
     bot.add_cog(MusicCommands(bot))

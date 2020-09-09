@@ -17,7 +17,7 @@ class HelpCommands(commands.Cog):
         )
         fields = [
             ("Bot Prefix", "`$`", False),
-
+            ##Info
             (
                 "Info Commands", 
                 '''
@@ -27,7 +27,7 @@ class HelpCommands(commands.Cog):
                 ''', 
                 True
             ),
-
+            ##Code
             (
                 "Code Commands", 
                 '''
@@ -37,7 +37,6 @@ class HelpCommands(commands.Cog):
                 ''', 
                 False
             ),
-
             ("Music Commands", "`$help music`", True),
             ("Moderator Commands", "`$help mod`", True),
         ]
@@ -81,6 +80,8 @@ class HelpCommands(commands.Cog):
             `$clear [msg count]` - clear a certain amount of messages in a channel
             `$pardon` - Unban a member
             `$unmute` - Unmute a member
+            `$role [give/->/=>] [@mention] [role name]` - give member a certain role
+            `$role [take/<-/<=] [@mention] [role name]` - take a certain role away from a member
             '''
         )
         await ctx.send(embed=helpMod)

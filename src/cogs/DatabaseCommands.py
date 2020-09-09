@@ -21,7 +21,7 @@ class DatabaseCommands(commands.Cog):
     async def get(self, ctx):
         await ctx.send('get code snippets')
 
-    @code.command(name='delete')
+    @code.command(name='delete',aliases=['del'])
     async def delete(self, ctx):
         await ctx.send('successfully deleted code snippet')
 
