@@ -3,4 +3,5 @@
 - finished help command
 
 ## [2020/09/09]
-- finished code command
+- finished code commands
+- updated help command due to new commands added

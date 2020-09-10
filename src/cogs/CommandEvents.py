@@ -14,7 +14,7 @@ class CommandEvents(commands.Cog):
     @commands.Cog.listener()
     async def on_command_error(self, ctx, err):
         if isinstance(err, commands.CommandNotFound):
-            print(colored(f'[ERROR] command {ctx.message.contest} was not found','red'))
+            print(colored(f'[ERROR] command {ctx.message.content} was not found','red'))
             return
             
         print(colored(f'[ERROR] command {ctx.command.name} was invoked incorrectly due to reasons below','red'))
