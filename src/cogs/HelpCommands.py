@@ -58,6 +58,7 @@ class HelpCommands(commands.Cog):
             `$play [video link/video name]` - Play music
             `$pause` - Pause music
             `$stop` - Stop the music from playing(it will clear the queue too, beware)
+            `$skip` - Skip current song
             `$volume [volume]` - Adjust volume of the music
             `$queue` - Display the current queue of songs
             '''
@@ -96,8 +97,9 @@ class HelpCommands(commands.Cog):
         helpCode.add_field(
             name="--------",
             value='''
-            `$code [new/get] [Snippet Id]` - share/view the code snippets
+            `$code [new/get] [Snippet]` - share/view the code snippets
             `$code delete [Snippet Id]` - delete a snippet
+            `$code set-status [Snippet Id] [solved/not-solved]` - change a snippets status
 
             __How to:__
             `$code new [Snippet Title]` - Create a new Code snippets

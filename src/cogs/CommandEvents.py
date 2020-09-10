@@ -1,5 +1,7 @@
 from discord.ext import commands
 
+from termcolor import colored
+
 commands_tally = {}
 
 class CommandEvents(commands.Cog):
@@ -11,7 +13,11 @@ class CommandEvents(commands.Cog):
     '''
     @commands.Cog.listener()
     async def on_command_error(self, ctx, err):
-        print(f'[ERROR] command {ctx.command.name} was invoked incorrectly due to reasons below')
+        if isinstance(err, commands.CommandNotFound):
+            print(colored(f'[ERROR] command {ctx.message.contest} was not found','red'))
+            return
+            
+        print(colored(f'[ERROR] command {ctx.command.name} was invoked incorrectly due to reasons below','red'))
         print(err)
 
     @commands.Cog.listener()
@@ -21,11 +27,11 @@ class CommandEvents(commands.Cog):
                 commands_tally[ctx.command.name] += 1
             else:
                 commands_tally[ctx.command.name] = 1
-            print(f'[INFO] command {commands_tally} is being called')
+            print(colored(f'[INFO] command {commands_tally} is being called','yellow'))
 
     @commands.Cog.listener()
     async def on_command_completion(self, ctx):
-        print(f'[INFO] command {ctx.command.name} was invoked successfully')
+        print(colored(f'[INFO] command {ctx.command.name} was invoked successfully','green'))
 
 def setup(bot):
     bot.add_cog(CommandEvents(bot))

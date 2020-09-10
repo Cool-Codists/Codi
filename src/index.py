@@ -18,11 +18,12 @@ client.remove_command('help')
 #get json data
 with open('./config.json') as f:
 	configData = json.load(f)
+print(colored('[INFO] loaded config.json', 'yellow'))
 
 
 @client.event
 async def on_ready():
-    print(colored(f'[INFO] Logged in as {client.user}', 'blue'))
+    print(colored(f'[INFO] Logged in as {client.user}', 'green'))
     await client.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name="Code"))
 
 @commands.has_permissions(administrator=True)
@@ -63,7 +64,7 @@ async def setup_role(ctx):
 
 for ext in configData['cogs']:
     try:
-        print(colored(f'[Cogs] loaded Cog "{ext}"','green'))
+        print(colored(f'[INFO] loaded Cog "{ext}"','yellow'))
         client.load_extension(ext)
     except AttributeError:
         print(colored(f'[ERROR] Failed to load Cog {ext}','red'))

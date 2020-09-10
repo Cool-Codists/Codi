@@ -1,5 +1,5 @@
 from discord.ext import commands
-from discord import utils
+import discord
 
 import random
 import os
@@ -36,10 +36,10 @@ class EventHandler(commands.Cog):
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
         print(payload.message_id)
-        if payload.message_id == 752372325462048768:
+        if payload.message_id == 752244419864035429:
             guild_id = payload.guild_id
-            guild = utils.find(lambda g: g.id == guild_id, self.bot.guilds)
-            member = utils.find(lambda m: m.id == payload.user_id, guild.members)
+            guild = discord.utils.find(lambda g: g.id == guild_id, self.bot.guilds)
+            member = discord.utils.find(lambda m: m.id == payload.user_id, guild.members)
 
             role = member.guild.get_role(roles[payload.emoji.name])
             if member is not None:
@@ -47,10 +47,10 @@ class EventHandler(commands.Cog):
     
     @commands.Cog.listener()
     async def on_raw_reaction_remove(self, payload):
-        if payload.message_id == 752372325462048768:
+        if payload.message_id == 752244419864035429:
             guild_id = payload.guild_id
-            guild = utils.find(lambda g: g.id == guild_id, self.bot.guilds)
-            member = utils.find(lambda m: m.id == payload.user_id, guild.members)
+            guild = discord.utils.find(lambda g: g.id == guild_id, self.bot.guilds)
+            member = discord.utils.find(lambda m: m.id == payload.user_id, guild.members)
 
             role = member.guild.get_role(roles[payload.emoji.name])
             print(role)
