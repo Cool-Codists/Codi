@@ -53,7 +53,9 @@ class DatabaseCommands(commands.Cog):
                 Paste to share: `$code get {sid}`
 
                 __**Snippet id:**__ {sid}
+                
                 __**Snippet Title:**__ {title}
+
                 __**Code Snippet:**__
                 {snippet.content}
                 '''
@@ -81,9 +83,11 @@ class DatabaseCommands(commands.Cog):
         if res is not None:
             await ctx.send(f'Snippet with the id: {args[0]} was successfully deleted')
     
-    @code.command(name='solve',aliases=['solv'])
-    async def solve(self, ctx, *args):
-        print(args)
+    @code.command(name='sol', aliases=['solv','solve'])
+    async def solv(self, ctx, *args):
+        dat = snipath.find_one({'snid': args[0]})
+        author = dat["author"]
+        await ctx.send(f'Come here <@{author}>! {ctx.author.mention} had solved your problem!')
     
     #status
     @code.command(name='set-status', aliases=['set-sta','sta','setSta'])
@@ -96,6 +100,7 @@ class DatabaseCommands(commands.Cog):
                 elif args[1] == 'not-solved':
                     newvalues = {"$set": {"solved": False}}
                 
+                res = snipath.update_one(query, newvalues)
                 await ctx.send(f"Snippet id `{args[0]}`'s status had changed to `{args[1]}`")    
             else:
                 await ctx.send(f'Please enter a valid status type (solved, not-solved)')
