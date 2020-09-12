@@ -1,0 +1,9 @@
+discord
+
+# terminals
+termcolor
+dotenv
+hashids
+
+#database
+pymongo

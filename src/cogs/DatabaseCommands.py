@@ -2,7 +2,6 @@ import os
 from termcolor import colored
 from hashids import Hashids
 import random
-import pprint
 
 from discord.ext import commands
 from discord import Embed
