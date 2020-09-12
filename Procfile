@@ -1,1 +1,1 @@
-worker: python ./src/index.py
+worker: python src/index.py
