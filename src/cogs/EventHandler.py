@@ -97,6 +97,7 @@ class EventHandler(commands.Cog):
             description=f'Welcome to {server} {member.mention}!'
         )
         await member.send(embed=embed)
+        await ctx.send(f'Welcome {member}! Please make sure that you read the server rules and pick your roles!')
 
 
 def setup(bot):
