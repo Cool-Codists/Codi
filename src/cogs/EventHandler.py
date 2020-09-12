@@ -53,12 +53,22 @@ class EventHandler(commands.Cog):
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
-        print(payload.message_id)
-        if payload.message_id in role_msgid:
-            guild_id = payload.guild_id
-            guild = discord.utils.find(lambda g: g.id == guild_id, self.bot.guilds)
-            member = discord.utils.find(lambda m: m.id == payload.user_id, guild.members)
+        guild_id = payload.guild_id
+        guild = discord.utils.find(lambda g: g.id == guild_id, self.bot.guilds)
+        member = discord.utils.find(lambda m: m.id == payload.user_id, guild.members)
 
+        print(payload.message_id)
+
+        if payload.message_id == 753057633132609536:
+            print(payload.emoji.name)
+            if payload.emoji.name == '✅':
+                role = member.guild.get_role(752247003819409450)
+                print(role)
+                await member.add_roles(role)
+            else:
+                pass
+
+        if payload.message_id in role_msgid:
             role = member.guild.get_role(roles[payload.emoji.name])
             print(role, member)
             if member is not None:
@@ -67,11 +77,17 @@ class EventHandler(commands.Cog):
     
     @commands.Cog.listener()
     async def on_raw_reaction_remove(self, payload):
-        if payload.message_id in role_msgid:
-            guild_id = payload.guild_id
-            guild = discord.utils.find(lambda g: g.id == guild_id, self.bot.guilds)
-            member = discord.utils.find(lambda m: m.id == payload.user_id, guild.members)
+        guild_id = payload.guild_id
+        guild = discord.utils.find(lambda g: g.id == guild_id, self.bot.guilds)
+        member = discord.utils.find(lambda m: m.id == payload.user_id, guild.members)
 
+        if payload.message_id == 753057633132609536:
+            if payload.emoji.name == '✅':
+                role = member.guild.get_role(752247003819409450)
+                await member.remove_roles(role)
+            else:
+                pass
+        if payload.message_id in role_msgid:
             role = member.guild.get_role(roles[payload.emoji.name])
             print(role, member)
             if member is not None:
@@ -82,7 +98,6 @@ class EventHandler(commands.Cog):
     async def on_member_join(self, member):
         server = member.guild.name
         roles = [
-            (member.guild.get_role(752247003819409450)),
             (member.guild.get_role(754103452287631390)),
             (member.guild.get_role(754103075228090441)),
             (member.guild.get_role(754102852011425882)),
@@ -96,8 +111,10 @@ class EventHandler(commands.Cog):
             title='Welcome Message',
             description=f'Welcome to {server} {member.mention}!'
         )
+
+        channel = self.bot.get_channel(751524642069676187)
         await member.send(embed=embed)
-        await ctx.send(f'Welcome {member}! Please make sure that you read the server rules and pick your roles!')
+        await channel.send(f'Welcome {member.mention}! Please make sure that you read the server rules and pick your roles!')
 
 
 def setup(bot):
