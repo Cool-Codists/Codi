@@ -58,7 +58,7 @@ class InfoCommands(commands.Cog):
             ("User name:", member.display_name, False),
             ("Created at:", member.created_at.strftime("%d/%m/%Y"), True),
             ("Joined at:", member.joined_at.strftime("%d/%m/%Y"), True),
-            ("Top Role:", member.top_role.mention, False),
+            # ("Top Role:", member.top_role.mention, False),
         ]
 
         embed.set_author(name=f"User Info - {member}")
