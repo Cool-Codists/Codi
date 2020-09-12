@@ -1,13 +1,13 @@
-import discord
-import os
 import json
-from discord.ext import commands
+import os
 
+import discord
+from discord.ext import commands
+#env
+from dotenv import load_dotenv
 #color
 from termcolor import colored
 
-#env
-from dotenv import load_dotenv
 load_dotenv()
 
 #define client
@@ -37,7 +37,7 @@ async def on_ready():
 #         > __Back-end__:
 #         > <:c_:752228123541635107> - **C**
 #         > <:cpp:752227520774144090> - **C++**
-#         > <:csharp:752229132963676210> - **C#**
+#         > <:csharp:752229132963676210> - **Cs**
 #         > <:java:752227672007901265> - **Java**
 #         > <:go:752228833234780321> - **Golang**
 #         > <:r_:752228334657863680> - **R**
@@ -97,3 +97,4 @@ for ext in configData['cogs']:
         
         
 client.run(os.getenv("TOKEN"))
+
