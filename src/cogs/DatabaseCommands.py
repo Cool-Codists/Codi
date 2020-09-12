@@ -26,7 +26,10 @@ class DatabaseCommands(commands.Cog):
             await ctx.send('Invalid code command passed...')
 
     @code.command(name='new')
+    @commands.cooldown(1, 120, commands.BucketType.user)
     async def new(self, ctx, *args):
+        if len(args) <= 0:
+            return
         title = " ".join(args)
         print(title)
         msg = await ctx.send(f'Adding code snippet, Title: {title}.\nPlease enter your code')
@@ -63,6 +66,12 @@ class DatabaseCommands(commands.Cog):
 
             dm = await ctx.author.send(embed=embed)
             await ctx.send('Successfully added your snippet! Check your DM for snippet id')
+    @new.error
+    async def newsni_error(self, ctx, error):
+        if isinstance(error, commands.CommandOnCooldown):
+            await ctx.send(f"You can't use it yet {ctx.author.mention}, it's still in cooldown.")
+        else:
+            raise error
         
 
     @code.command(name='get')

@@ -11,19 +11,19 @@ class MusicCommands(commands.Cog):
     #play status
     @commands.command(name='play')
     async def play(self, ctx):
-        await ctx.send('played music')
+        pass
     
     @commands.command(name='pause')
     async def pause(self, ctx):
-        await ctx.send('music paused')
+        pass
     
     @commands.command(name='stop')
     async def stop(self, ctx):
-        await ctx.send('music stopped')
+        pass
     
     @commands.command(name='skip')
     async def skip(self, ctx):
-        await ctx.send('skipped current song')
+        pass
 
     #volume control
     @commands.command(name='volume', aliases=['v','vol'])

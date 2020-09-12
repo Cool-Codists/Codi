@@ -24,6 +24,9 @@ class HelpCommands(commands.Cog):
                 `$serverinfo` - Get current server's info
                 `$whois [@mention]` - Get the info of the member that's being mentioned
                 `$avatar [@mention]` - Get the avatar of the member that's being mentioned
+
+                `$src` - Get Source Bin's link
+                `$inv` - Get Invitation link to this Server
                 ''', 
                 True
             ),
@@ -37,7 +40,7 @@ class HelpCommands(commands.Cog):
                 ''', 
                 False
             ),
-            ("Music Commands", "`$help music`", True),
+            # ("Music Commands", "`$help music`", True),
             ("Moderator Commands", "`$help mod`", True),
         ]
         for name, value, inline in fields:
@@ -45,25 +48,25 @@ class HelpCommands(commands.Cog):
 
         await ctx.send(embed=helpEmbed);
 
-    @help.command(name='music')
-    async def help_misc(self, ctx):
-        helpMusic = discord.Embed(
-            title="Music Commands",
-            description="How to use them",
-            color=0xf5d1f6
-        )
-        helpMusic.add_field(
-            name="--------",
-            value='''
-            `$play [video link/video name]` - Play music
-            `$pause` - Pause music
-            `$stop` - Stop the music from playing(it will clear the queue too, beware)
-            `$skip` - Skip current song
-            `$volume [volume]` - Adjust volume of the music
-            `$queue` - Display the current queue of songs
-            '''
-        )
-        await ctx.send(embed=helpMusic)
+    # @help.command(name='music')
+    # async def help_misc(self, ctx):
+    #     helpMusic = discord.Embed(
+    #         title="Music Commands",
+    #         description="How to use them",
+    #         color=0xf5d1f6
+    #     )
+    #     helpMusic.add_field(
+    #         name="--------",
+    #         value='''
+    #         `$play [video link/video name]` - Play music
+    #         `$pause` - Pause music
+    #         `$stop` - Stop the music from playing(it will clear the queue too, beware)
+    #         `$skip` - Skip current song
+    #         `$volume [volume]` - Adjust volume of the music
+    #         `$queue` - Display the current queue of songs
+    #         '''
+    #     )
+    #     await ctx.send(embed=helpMusic)
 
     @help.command(name='mod')
     async def help_mod(self, ctx):
