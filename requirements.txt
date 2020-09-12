@@ -2,7 +2,7 @@ discord
 
 # terminals
 termcolor
-dotenv
+python-dotenv
 hashids
 
 #database
