@@ -114,7 +114,7 @@ class EventHandler(commands.Cog):
 
         channel = self.bot.get_channel(751524642069676187)
         await member.send(embed=embed)
-        await channel.send(f'Welcome {member.mention}! Please make sure that you read the server rules and pick your roles!')
+        await channel.send(f'Welcome {member.mention}! Please make sure that you read the <#751541905363304490> and <#751537346540863620>!')
 
 
 def setup(bot):
