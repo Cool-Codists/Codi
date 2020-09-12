@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 #get json data
-with open('./config.json') as f:
+with open('src/config.json') as f:
 	configData = json.load(f)
 
 role_msgid = configData["roleReactMsg"]

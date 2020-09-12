@@ -16,7 +16,7 @@ client = commands.Bot(command_prefix = os.getenv("PREFIX"))
 client.remove_command('help')
 
 #get json data
-with open('./config.json') as f:
+with open('src/config.json') as f:
 	configData = json.load(f)
 print(colored('[INFO] loaded config.json', 'yellow'))
 
