@@ -4,8 +4,7 @@
         "cogs.HelpCommands",
         "cogs.DatabaseCommands",
         "cogs.ModeratorCommands",
-        "cogs.InfoCommands",
-        "cogs.MusicCommands",
+        "cogs.InfoCommands",   
         "cogs.EventHandler"
     ],
     "roleReactMsg": [754134025202827326, 754134024888254584],
