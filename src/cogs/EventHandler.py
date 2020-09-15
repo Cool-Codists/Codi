@@ -34,6 +34,10 @@ roles = {
     "sprboot": 754129278672699473,
     "djs": 754125892120215597,
     "dpy": 754126016070287360,
+    "kubernetes": 755507321710444624,
+    "git": 755560711924744273,
+    "sass": 755553221040144404,
+    "jquery": 755553426062180359
 }
 
 class EventHandler(commands.Cog):
@@ -102,6 +106,8 @@ class EventHandler(commands.Cog):
             (member.guild.get_role(754103075228090441)),
             (member.guild.get_role(754102852011425882)),
             (member.guild.get_role(754102954247585843)),
+            (member.guild.get_role(755503235409641504)),
+            (member.guild.get_role(755503001749422152)),
         ]
         for role in roles:
             await member.add_roles(role)

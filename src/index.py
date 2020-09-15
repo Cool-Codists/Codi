@@ -29,7 +29,9 @@ async def on_ready():
 # @commands.has_permissions(administrator=True)
 # @client.command(name='setup')
 # async def setup_role(ctx):
-#     role_react = await ctx.send(
+#     await ctx.message.delete()
+
+#     lang_react = await ctx.send(
 #         '''
 #         > ```md
 #         > + Pick Your Programming Language
@@ -48,6 +50,7 @@ async def on_ready():
 #         > __Front-end__:
 #         > <:html:752227918121402378> - **HTML** [Hyper Text Markup Language]
 #         > <:css:752227961146703982> - **CSS** [Cascading Style Sheet]
+#         > <:sass:755553406281711646> - **Sass** [Pre-processor]
 #         > <:js:752227730204000287> - **JavaScript**
 #         > <:ts:752228025700974622> - **TypeScript**
 #         '''
@@ -60,19 +63,48 @@ async def on_ready():
 #         > ```
 #         > <:vuejs:752228572961439897> - **Vue.js**
 #         > <:reactjs:752228520716926997> - **React.js**
-#         > <:nodejs:752228422037667961> - **Node.js/Deno**
 #         > 
 #         > <:sprboot:754128793098125413> - **Spring Boot**
-#         > <:docker:754125649450631190> - **Docker**
 #         > <:dpy:754123295485591582> - **Discord.py**
 #         > <:djs:754123017495380029> - **Discord.js**
 #         '''
 #     )
-#     for emo in configData['roleEmoji']:
-#         await role_react.add_reaction(emo)
+
+#     lib_react = await ctx.send(
+#         '''
+#         > ```md
+#         > + Pick Your Libraries
+#         > ```
+#         > <:nodejs:752228422037667961> - **Node.js/Deno**
+#         > <:jquery:755553392276799640> - **jQuery**
+#         '''
+#     )
+
+#     devOps_react = await ctx.send(
+#         '''
+#         > ```md
+#         > + Pick Your DevOps
+#         > ```
+#         > <:docker:754125649450631190> - **Docker**
+#         > <:kubernetes:755507301091246271> - **Kubernetes**
+#         > <:git:755560866233188435> - **Git**
+#         '''
+#     )
+
+#     roleCate = [
+#         lang_react,
+#         frame_react,
+#         lib_react,
+#         devOps_react
+#     ]
     
-#     for emo in configData['frameEmoji']:
-#         await frame_react.add_reaction(emo)
+#     count = 0
+#     for i in configData['roleEmojis']:
+#         for emo in configData['roleEmojis'][i]:
+#             await roleCate[count].add_reaction(emo)
+#         count += 1
+    
+#     await ctx.author.send('Role Reaction Setup Complete, no error occurs')
 
 @client.command(name='source',aliases=['src','srcb','srcbin'])
 async def get_srclink(ctx):
@@ -80,6 +112,35 @@ async def get_srclink(ctx):
     Snippets That's more than 1024 characters long can be published in here to share
     https://sourceb.in
     ''')
+
+
+# @client.command(name='vanish', aliases=[])
+# async def get_srclink(ctx):
+#     await ctx.author.kick(reason="no reasons provided")
+@client.command(name='update')
+async def update_role(ctx, member: discord.Member = None):
+    if member is not None:
+        roles = [
+            (member.guild.get_role(754103452287631390)),
+            (member.guild.get_role(754103075228090441)),
+            (member.guild.get_role(754102852011425882)),
+            (member.guild.get_role(754102954247585843)),
+            (member.guild.get_role(755503235409641504)),
+            (member.guild.get_role(755503001749422152)),
+        ]
+        for role in roles:
+            await member.add_roles(role)
+    else:
+        roles = [
+            (ctx.guild.get_role(754103452287631390)),
+            (ctx.guild.get_role(754103075228090441)),
+            (ctx.guild.get_role(754102852011425882)),
+            (ctx.guild.get_role(754102954247585843)),
+            (ctx.guild.get_role(755503235409641504)),
+            (ctx.guild.get_role(755503001749422152)),
+        ]
+        for role in roles:
+            await ctx.author.add_roles(role)
 
 @client.command(name='invite', aliases=['inv', 'inv-link', 'invitation-link', 'invitation'])
 async def get_invlink(ctx):

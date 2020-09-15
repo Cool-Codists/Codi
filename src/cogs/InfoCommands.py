@@ -32,7 +32,7 @@ class InfoCommands(commands.Cog):
             ("Region", ctx.guild.region, True),
             ("ID", ctx.guild.id, True),
             ("Owner", ctx.guild.owner, False),
-            ("Created at", ctx.guild.created_at.strftime("%d/%m/%Y %H:%M:%S"), False),
+            ("Created at", ctx.guild.created_at.strftime("%m/%d/%Y %H:%M:%S"), False),
             ("Member Count", ctx.guild.member_count, True),
             ("Member Statuses",
              f":green_circle: {statuses[0]} :yellow_circle: {statuses[1]} :red_circle: {statuses[2]} :white_circle: {statuses[3]}", True),
@@ -56,8 +56,8 @@ class InfoCommands(commands.Cog):
         fields = [
             ("ID:", member.id, True),
             ("User name:", member.display_name, False),
-            ("Created at:", member.created_at.strftime("%d/%m/%Y"), True),
-            ("Joined at:", member.joined_at.strftime("%d/%m/%Y"), True),
+            ("Created at:", member.created_at.strftime("%m/%d/%Y"), True),
+            ("Joined at:", member.joined_at.strftime("%m/%d/%Y"), True),
             # ("Top Role:", member.top_role.mention, False),
         ]
 
