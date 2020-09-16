@@ -9,3 +9,6 @@
 ## [2020/09/11]
 - all commands finished
 - version 1.0.0 released
+
+## [2020/09/15]
+- added poll command
