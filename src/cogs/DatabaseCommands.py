@@ -11,13 +11,14 @@ import pymongo
 MONGO = pymongo.MongoClient(os.getenv("DBPATH"))
 db = MONGO.data
 snipath = db.code_snippets
+# pollpath = db.polls
 
 class DatabaseCommands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
     '''
-    Database Commands
+    Code Snippet Commands
     '''
     @commands.group(name='code')
     async def code(self, ctx):
@@ -36,7 +37,7 @@ class DatabaseCommands(commands.Cog):
         if '```' not in snippet.content:
             await ctx.send('Please enter your code in a code block format!')
         else:
-            sid = get_hash()
+            sid = get_hash('snippet')
 
             dat = {
                 "snid": sid,
@@ -115,19 +116,64 @@ class DatabaseCommands(commands.Cog):
         except IndexError:
             print(colored('[ERROR] {Command.code.set-Status}: No status type entered','red'))
             await ctx.send('Please enter a status type (solved, not-solved)')
+    
+    '''
+    Poll Commands
+    '''
+    @commands.command(name='poll')
+    async def new_poll(self, ctx, *args):
+        if len(args) <= 0:
+            return
+
+        await ctx.message.delete()
+        pollchannel = self.bot.get_channel(755626254371258388)
+        pid = get_hash('poll')
+        topic = " ".join(args)
+        # dat = {
+        #     "pid": pid,
+        #     "pname": topic,
+        #     "pyes": 0,
+        #     "pno": 0,
+        # }
+
+        embed = Embed(title='New Poll', description='-----------', color=0x66D9EF)
+        embed.add_field(name=f"Poll for: \n{topic}", 
+        value='''
+        React with <:upvote:755615024428351538> for agree
+
+        React with <:downvote:755615024432808067> for disagree
+        ''')
+
+        # res = pollpath.insert_one(dat)
+        await ctx.author.send(f'Poll {topic} Created')
+        poll = await pollchannel.send(embed=embed)
+        await poll.add_reaction('<:upvote:755615024428351538>')
+        await poll.add_reaction('<:downvote:755615024432808067>')
+
+        
 
 '''
 functions
 '''
-def get_hash():
+def get_hash(type):
+    # if type == 'snippet':
     hashids = Hashids(salt='codi', min_length='6')
     rand = random.randint(1, 100000000)
     print(rand)
     sid = hashids.encode(rand)
     if snipath.find_one({"snid": sid}) is not None:
-        get_hash()
+        get_hash(type)
     else:
         return sid
+    # elif type == 'poll':
+    #     hashids = Hashids(salt='copoll', min_length='6')
+    #     rand = random.randint(1, 100000000)
+    #     print(rand)
+    #     pid = hashids.encode(rand)
+    #     if pollpath.find_one({"pid": pid}) is not None:
+    #         get_hash(type)
+    #     else:
+    #         return pid
 
 def check(author):
     def inner_check(message):

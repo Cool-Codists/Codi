@@ -35,7 +35,7 @@ class InfoCommands(commands.Cog):
             ("Created at", ctx.guild.created_at.strftime("%m/%d/%Y %H:%M:%S"), False),
             ("Member Count", ctx.guild.member_count, True),
             ("Member Statuses",
-             f":green_circle: {statuses[0]} :yellow_circle: {statuses[1]} :red_circle: {statuses[2]} :white_circle: {statuses[3]}", True),
+             f"<:online:755612534631039056> {statuses[0]} <:idle:755612534710599731> {statuses[1]} <:dnd:755612534647554048> {statuses[2]} <:offline:755612534660268083> {statuses[3]}", True),
             ("Channel Count", len(ctx.guild.channels), False),
         ]
 
