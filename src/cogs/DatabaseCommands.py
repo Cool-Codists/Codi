@@ -150,6 +150,13 @@ class DatabaseCommands(commands.Cog):
         await poll.add_reaction('<:upvote:755615024428351538>')
         await poll.add_reaction('<:downvote:755615024432808067>')
 
+    @commands.has_permissions(administrator=True)
+    @commands.command(name='end-poll')
+    async def end_poll(self, ctx, res):
+        channel = self.bot.get_channel(755626254371258388)
+
+        await channel.send(f'Poll ended. Result: {res}')
+        await ctx.message.delete()
         
 
 '''

@@ -71,13 +71,25 @@ class InfoCommands(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(name='avatar')
-    async def avatar(self, ctx, member: discord.Member):
-        embed = discord.Embed(
-            color=discord.Color(0xffff),
-            title=f"{member.name}'s Avatar"
-        )
-        embed.set_image(url=f"{member.avatar_url}")
-        await ctx.send(embed=embed)
+    async def avatar(self, ctx, member: discord.Member = None):
+        if member is not None:
+            embed = discord.Embed(
+                color=discord.Color(0xffff),
+                title=f"{member.name}'s Avatar"
+            )
+            embed.set_image(url=f"{member.avatar_url}")
+            await ctx.send(embed=embed)
+        else:
+            embed = discord.Embed(
+                color=discord.Color(0xffff),
+                title=f"{ctx.author.name}'s Avatar"
+            )
+            embed.set_image(url=f"{ctx.author.avatar_url}")
+            await ctx.send(embed=embed)
+    
+    @commands.command(name='languages',aliases=['langs','prog-langs','programming-languages'])
+    async def countMemberLang(self, ctx):
+        pass
 
 def setup(bot):
     bot.add_cog(InfoCommands(bot))

@@ -142,6 +142,14 @@ async def update_role(ctx, member: discord.Member = None):
         for role in roles:
             await ctx.author.add_roles(role)
 
+@commands.has_permissions(administrator=True)
+@client.command(name='announce',aliases=['anno'])
+async def announce(ctx, channel_id: int, *args):
+    channel = client.get_channel(channel_id)
+    
+    await channel.send(" ".join(args))
+    await ctx.message.delete()
+
 @client.command(name='invite', aliases=['inv', 'inv-link', 'invitation-link', 'invitation'])
 async def get_invlink(ctx):
     await ctx.send('''
