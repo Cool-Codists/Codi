@@ -1,5 +1,6 @@
 import json
 import os
+import time
 
 import discord
 from discord.ext import commands
@@ -149,6 +150,76 @@ async def announce(ctx, channel_id: int, *args):
     
     await channel.send(" ".join(args))
     await ctx.message.delete()
+
+# @client.command(name='mod-intro')
+# async def mod_intro(ctx, member: discord.Member):
+#     msg = []
+
+#     msg.append(await member.send(f'All these times {member.mention},'))
+#     time.sleep(3)
+#     msg.append(await member.send(f"You've been a great member as much as you can"))
+#     time.sleep(3)
+#     msg.append(await member.send(f"But now, everything is going to change..."))
+#     time.sleep(3)
+#     msg.append(await member.send(f"You're about to get on the highest chair in our server, have every member's movement in your eyes..."))
+#     time.sleep(3)
+#     msg.append(await member.send(f"But you're also going to find out our server's darkest secret..."))
+#     time.sleep(3)
+#     msg.append(await member.send(f"You have to keep all the members away from them..."))
+#     time.sleep(3)
+#     msg.append(await member.send(f"As well as keeping it yourself..."))
+#     time.sleep(3)
+#     msg.append(await member.send(f"Control yourself..."))
+#     time.sleep(3)
+#     msg.append(await member.send(f"If you failed..."))
+#     time.sleep(3)
+#     msg.append(await member.send(f"Everything is going to fall apart..."))
+#     time.sleep(3)
+#     msg.append(await member.send(f"Everything we did will go to nothing..."))
+#     time.sleep(3)
+#     msg.append(await member.send(f"So now..."))
+#     time.sleep(3)
+#     msg.append(await member.send(f"We invite you to join us..."))
+#     time.sleep(3)
+#     msg.append(await member.send(f"**Red capsule** or **Blue capsule**"))
+#     time.sleep(3)
+#     msg.append(await member.send(f"**To Be** or **Not To Be**"))
+#     time.sleep(3)
+#     msg.append(await member.send(f"Either yes or no"))
+#     time.sleep(3)
+#     msg.append(await member.send(f"The choice is yours..."))
+#     time.sleep(3)
+
+#     def check(author):
+#         def inner_check(message):
+#             if message.author != author:
+#                 return False
+#             else:
+#                 return True
+#         return inner_check
+
+#     choice = await client.wait_for('message')
+
+#     print(choice)
+#     if choice.content == 'yes':
+#         await member.send('You made the right choice')
+#         guild = discord.utils.find(lambda g: g.id == 751524641507639448, client.guilds)
+#         role = discord.utils.get(guild.roles, name='moderator')
+#         print(role)
+#         await member.add_roles(role)
+#         await member.send('Now check <#751524642069676187>')
+#         print(msg)
+#         for i in range(19):
+#             await msg[i].delete()
+#     elif choice.content == 'no':
+#         msg.append(await member.send('ok...'))
+#         time.sleep(1)
+#         msg.append(await member.send("https://tenor.com/view/will-smith-dont-worry-memory-gone-forget-it-amnesia-gif-4789990"))
+#         print(msg)
+#         for i in range(20):
+#             await msg[i].delete()
+#     else:
+#         pass
 
 @client.command(name='invite', aliases=['inv', 'inv-link', 'invitation-link', 'invitation'])
 async def get_invlink(ctx):
