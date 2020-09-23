@@ -1,2 +1,5 @@
 # Codi
-[![Run on Repl.it](https://repl.it/badge/github/Cool-Codists/Codi)](https://repl.it/github/Cool-Codists/Codi)
+
+Cool Codists' Server bot
+
+Join our Discord Server to check it out LIVE:  [Click Here](https://discord.gg/bxrYFN9)
