@@ -15,8 +15,8 @@ class InfoCommands(commands.Cog):
     @commands.command(name='serverinfo', aliases=['server-info', 'info-server', 'server'])
     async def serverinfo(self, ctx):
         embed = Embed(
-            title=ctx.guild.name,
-            description='-----------',
+            title="Server Info",
+            description="------------",
             color=0xf92672,
             timestamp=datetime.datetime.utcnow()
         )
@@ -28,15 +28,82 @@ class InfoCommands(commands.Cog):
             len(list(filter(lambda m: str(m.status) == "offline", ctx.guild.members))),
         ]
 
+        regions = {
+            "brazil": f"Brazil :flag_br:",
+            "europe": f"Europe :flag_eu:",
+            "hongkong": f"Hong Kong :flag_hk:",
+            "india": f"India :flag_in:",
+            "japan": f"Japan :flag_jp:",
+            "russia": f"Russia :flag_ru:",
+            "singapore": f"Singapore :flag_sg:",
+            "southafrica": f"South Africa :flag_za:",
+            "sydney": f"Sydney :flag_hm:",
+            "us-central": f"US Central :flag_us:",
+            "us-east": f"US East :flag_us:",
+            "us-south": f"US South :flag_us:",
+            "us-west": f"US West :flag_us:"
+        }
+
+        ver_levels = {
+            "none": f"None\nNo criteria set.",
+            "low": f"Low\nMember must have a verified email on their Discord account.",
+            "medium": f"Medium\nMember must have a verified email and be registered on Discord for more than five minutes",
+            "high": f"High\nMember must have a verified email, be registered on Discord for more than five minutes, and be a member of the guild itself for more than ten minutes.",
+        }
+        print(str(ctx.guild.region))
+        reg = regions[str(ctx.guild.region)]
+        ver = ver_levels[str(ctx.guild.verification_level)]
+
         fields = [
-            ("Region", ctx.guild.region, True),
-            ("ID", ctx.guild.id, True),
-            ("Owner", ctx.guild.owner, False),
-            ("Created at", ctx.guild.created_at.strftime("%m/%d/%Y %H:%M:%S"), False),
-            ("Member Count", ctx.guild.member_count, True),
-            ("Member Statuses",
-             f"<:online:755612534631039056> {statuses[0]} <:idle:755612534710599731> {statuses[1]} <:dnd:755612534647554048> {statuses[2]} <:offline:755612534660268083> {statuses[3]}", True),
-            ("Channel Count", len(ctx.guild.channels), False),
+            ("<:announcements:762029375716851732> Name(ID):",
+             f"**{ctx.guild.name}**(`{ctx.guild.id}`)", True),
+            (":date: Created at:", ctx.guild.created_at.strftime("%m/%d/%Y %H:%M:%S"), False),
+            
+            ("<:owner:762029375783698462> Owner:", 
+             ctx.guild.owner, True),
+            ("<:globe:762029375792087080> Region:", reg, True),
+
+            (
+                "<:members:762029614117683210> Member:",
+                f'''Total Members: **{ctx.guild.member_count}**
+                <:online:755612534631039056> {statuses[0]} <:idle:755612534710599731> {statuses[1]} <:dnd:755612534647554048> {statuses[2]} <:offline:755612534660268083> {statuses[3]}
+                ''',
+                False
+            ),
+            # ("<:boost:762029375776227358> Boost Level:", ctx.guild.premium_tier, True),
+            
+
+            (":lock: Verification Level:", f'{ver}\n', False),
+
+            (
+                "<:role:762029375805194290> Roles:", 
+                f'''
+                → Total Roles: **{len(ctx.guild.roles)}**
+                → Highest Role: <@&{ctx.guild.roles[len(ctx.guild.roles)-1].id}>
+
+                ''',
+                False
+            ),
+
+            (
+                "<:channel:762029375859589120> Channels:", 
+                f'''
+                → Total Channels: **{len(ctx.guild.channels)}**
+                → Categories: **{len(ctx.guild.categories)}**
+                → Text Channels: **{len(ctx.guild.text_channels)}**
+                → Voice Channels: **{len(ctx.guild.voice_channels)}**
+                → AFK Channel: **{ctx.guild.afk_channel}**
+
+                ''', 
+                False
+            ),
+            (
+                ":orange_book: Emojis",
+                f'''
+                → Total Emojis: **{len(ctx.guild.emojis)}/{ctx.guild.emoji_limit}**
+                ''',
+                False
+            )
         ]
 
         embed.set_thumbnail(url=f'{ctx.guild.icon_url}')

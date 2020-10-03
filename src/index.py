@@ -110,7 +110,6 @@ async def on_ready():
 @client.command(name='source',aliases=['src','srcb','srcbin'])
 async def get_srclink(ctx):
     await ctx.send('''
-    Snippets That's more than 1024 characters long can be published in here to share
     https://sourceb.in
     ''')
 

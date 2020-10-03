@@ -58,13 +58,11 @@ class DatabaseCommands(commands.Cog):
                 __**Snippet id:**__ {sid}
                 
                 __**Snippet Title:**__ {title}
-
-                __**Code Snippet:**__
-                {snippet.content}
                 '''
             )
 
             dm = await ctx.author.send(embed=embed)
+            await ctx.send(snippet.content)
             await ctx.send('Successfully added your snippet! Check your DM for snippet id')
     @new.error
     async def newsni_error(self, ctx, error):
