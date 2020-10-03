@@ -79,8 +79,8 @@ class DatabaseCommands(commands.Cog):
         res = snipath.find_one({"snid": args[0]})
         if res is not None:
             embed = Embed(title=f'Title: {res["snitle"]}', description=f'Solved: {res["solved"]}', color=0xff997e)
-            embed.add_field(name="------------",value=res["content"])
             await ctx.send(embed=embed)
+            await ctx.send(res["content"])
         else:
             await ctx.send(f"Can't find the snippet that matches the id: {args[0]}")
 
